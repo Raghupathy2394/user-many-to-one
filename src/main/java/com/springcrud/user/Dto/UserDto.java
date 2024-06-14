@@ -1,5 +1,9 @@
 package com.springcrud.user.Dto;
 
+import java.util.List;
+
+import com.springcrud.user.entity.Address;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,4 +25,5 @@ public class UserDto {
 	@Column(name = "gender")
 	private String gender;
 
+	private List<Address> address;
 }

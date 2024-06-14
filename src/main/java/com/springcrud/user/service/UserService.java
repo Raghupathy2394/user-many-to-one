@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.springcrud.user.Dto.UserDto;
 import com.springcrud.user.entity.User;
+import com.springcrud.user.repository.AddressRepository;
 import com.springcrud.user.repository.UserRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class UserService implements UserServiceImp {
 	@Autowired
 	UserRepository userRepo;
 
+	@Autowired
+	AddressRepository addressRepo;
+	
 	@Override
 	public UserDto getid(int id) {
 		Optional<User> entity = userRepo.findById(id);
@@ -26,6 +30,7 @@ public class UserService implements UserServiceImp {
 		dto.setName(user.getName());
 		dto.setAge(user.getAge());
 		dto.setGender(user.getGender());
+		dto.setAddress(user.getAddress());
 		return dto;
 	}
 	@Override
@@ -36,6 +41,7 @@ public class UserService implements UserServiceImp {
 	dto.setName(user.getName());
 	dto.setAge(user.getAge());
 	dto.setGender(user.getGender());
+	dto.setAddress(user.getAddress());
 	return dto;
 	}
 
@@ -53,10 +59,21 @@ public class UserService implements UserServiceImp {
 			dto.setName(e.getName());
 			dto.setAge(e.getAge());
 			dto.setGender(e.getGender());
+			dto.setAddress(e.getAddress());
 			userdto.add(dto);
 		}
 		return userdto;
 
+	}
+	@Override
+	public User create(UserDto userdto) {
+		User entity=new User();
+		entity.setId(userdto.getId());
+		entity.setName(userdto.getName());
+		entity.setAge(userdto.getAge());
+		entity.setGender(userdto.getGender());
+		entity.setAddress(userdto.getAddress());
+		return userRepo.save(entity);
 	}
 
 	@Override
@@ -68,6 +85,7 @@ public class UserService implements UserServiceImp {
 			obj.setName(e.getName());
 			obj.setAge(e.getAge());
 			obj.setGender(e.getGender());
+			obj.setAddress(e.getAddress());
 			entity.add(obj);
 		}
 		return userRepo.saveAll(entity);
@@ -83,6 +101,7 @@ public class UserService implements UserServiceImp {
 			obj.setName(e.getName());
 			obj.setAge(e.getAge());
 			obj.setGender(e.getGender());
+			obj.setAddress(e.getAddress());
 			entity.add(obj);
 		}
 		return userRepo.saveAll(entity);
@@ -99,6 +118,7 @@ public class UserService implements UserServiceImp {
 	public List<Object> getAny(Object key) {
 		return userRepo.getByAny(key);
 	}
+
 	
 
 }

@@ -15,11 +15,17 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 
 	@Query("select u from User u where u.gender= :gender")
 	User findByGender(String gender);
-	
-	
+
 	
 	@Query("select u from User  u where cast(u.id as string) like %:key% or u.name like %:key%"
 			+ " or u.gender like %:key% or cast(u.age as String) like %:key%")
+	
+//	@Query(value+"select  userdb.age,userdb.gender,userdb.name,useraddress.contact,useraddress.addresstype"
+//            +" useraddress.city from userdb  inner join useraddress"
+//            + "  on userdb.id=useraddress.adid where userdb.name like %:key% "
+//            + "or userdb.gender like %:key% ")
          List<Object> getByAny(Object key); 
 
+	
+	
 }

@@ -25,4 +25,6 @@ public interface UserServiceImp {
 
 	List<Object> getAny(Object key);
 
+	User create(UserDto userdto);
+
 }

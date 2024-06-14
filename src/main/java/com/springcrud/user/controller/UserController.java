@@ -41,6 +41,11 @@ public class UserController {
 	public List<UserDto> getalluser(@RequestParam (value="name",required=false) String name){
 		return userservice.getalluser(name);
 	}
+	@PostMapping("/post")
+	public User create(@RequestBody UserDto userdto) {
+		return userservice.create(userdto);
+	}
+	
 	@PostMapping("/postall")
 	public List<User> createall(@RequestBody List<UserDto> userdto){
 		return userservice.createall(userdto);
@@ -53,8 +58,11 @@ public class UserController {
 	public String delete(@PathVariable int id) {
 		return userservice.delete(id);
 	} 
+	
+	//////// *****get any key**********///////
+	
 	@GetMapping("getany/{key}")
-	public List<Object> getAny(@PathVariable ("key") Object key){
+	public List<Object> getAny(@RequestParam ("key") Object key){
 		return userservice.getAny(key);
 				
 	}
