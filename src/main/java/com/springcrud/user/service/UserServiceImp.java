@@ -3,13 +3,14 @@ package com.springcrud.user.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springcrud.user.Dto.UserAddressDto;
 import com.springcrud.user.Dto.UserDto;
 import com.springcrud.user.entity.User;
 
 public interface UserServiceImp {
 
 
-	List<UserDto> getalluser(String name);
+//	List<UserDto> getalluser(String name);
 
 	List<User> createall(List<UserDto> userdto);
 
@@ -26,5 +27,7 @@ public interface UserServiceImp {
 	List<Object> getAny(Object key);
 
 	User create(UserDto userdto);
+
+	List<UserAddressDto> getByName(String name);
 
 }

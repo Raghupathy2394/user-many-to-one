@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springcrud.user.Dto.UserAddressDto;
 import com.springcrud.user.Dto.UserDto;
 import com.springcrud.user.entity.User;
 import com.springcrud.user.repository.UserRepository;
@@ -37,10 +38,10 @@ public class UserController {
 		return userservice.getByGender(gender);
 	}
 	
-	@GetMapping("/getalluser")
-	public List<UserDto> getalluser(@RequestParam (value="name",required=false) String name){
-		return userservice.getalluser(name);
-	}
+//	@GetMapping("/getalluser")
+//	public List<UserDto> getalluser(@RequestParam (value="name",required=false) String name){
+//		return userservice.getalluser(name);
+//	}
 	@PostMapping("/post")
 	public User create(@RequestBody UserDto userdto) {
 		return userservice.create(userdto);
@@ -62,8 +63,11 @@ public class UserController {
 	//////// *****get any key**********///////
 	
 	@GetMapping("getany/{key}")
-	public List<Object> getAny(@RequestParam ("key") Object key){
-		return userservice.getAny(key);
-				
+	public List<Object> getAny(@PathVariable ("key") Object key){
+		return userservice.getAny(key);		
+	} 
+	@GetMapping("getall")
+	public List<UserAddressDto> getbyname(@RequestParam(value="name",required=false) String name){
+		return userservice.getByName(name);
 	}
 }

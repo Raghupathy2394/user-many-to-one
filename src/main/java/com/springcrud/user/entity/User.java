@@ -42,8 +42,6 @@ public class User {
 	@JoinColumn(name="user_adid",referencedColumnName = "id")
 	private List<Address> address;
 	
-//	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-//	@JsonManagedReference
-//	private List<Address> address;
+
 	
 }

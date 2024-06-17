@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springcrud.user.Dto.UserAddressDto;
 import com.springcrud.user.Dto.UserDto;
 import com.springcrud.user.entity.User;
 import com.springcrud.user.repository.AddressRepository;
@@ -45,26 +46,26 @@ public class UserService implements UserServiceImp {
 	return dto;
 	}
 
-	@Override
-	public List<UserDto> getalluser(String name) {
-		List<User> users;
-		if (name == null) {
-			users = userRepo.findAll();
-		} else
-			users = userRepo.findByName(name);
-		List<UserDto> userdto = new ArrayList<UserDto>();
-		for (User e : users) {
-			UserDto dto = new UserDto();
-			dto.setId(e.getId());
-			dto.setName(e.getName());
-			dto.setAge(e.getAge());
-			dto.setGender(e.getGender());
-			dto.setAddress(e.getAddress());
-			userdto.add(dto);
-		}
-		return userdto;
+//	@Override
+//	public List<UserDto> getalluser(String name) {
+//		List<User> users;
+//		if (name == null) {
+//			users = userRepo.findAll();
+//		} else
+//			users = userRepo.findByName(name);
+//		List<UserDto> userdto = new ArrayList<UserDto>();
+//		for (User e : users) {
+//			UserDto dto = new UserDto();
+//			dto.setId(e.getId());
+//			dto.setName(e.getName());
+//			dto.setAge(e.getAge());
+//			dto.setGender(e.getGender());
+//			dto.setAddress(e.getAddress());
+//			userdto.add(dto);
+//		}
+//		return userdto; }
 
-	}
+	
 	@Override
 	public User create(UserDto userdto) {
 		User entity=new User();
@@ -118,7 +119,14 @@ public class UserService implements UserServiceImp {
 	public List<Object> getAny(Object key) {
 		return userRepo.getByAny(key);
 	}
+	@Override
+	public List<UserAddressDto> getByName(String name) {
+		if(name==null) {
+			return userRepo.findAlluser();
+	}else {
+		return userRepo.findByName(name);
+	}
 
 	
-
+	}
 }
